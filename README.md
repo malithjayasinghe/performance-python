@@ -1,8 +1,13 @@
 # performance-python
 
-Python Flask Performance Benchmark and results
+Python Flask App performance results in Docker
+
+Impact of core allocation on the performance
+
+Number of Gunicorn workers 8
 
 Senario: Simple Echo Service (echos the response back to the client)
+
 
 
 | CPU | Memory  | Concurrency  | Think Time (exponential) | Average Latency (ms) | Standard Deviation | TPS (requests/second) | Error % |
