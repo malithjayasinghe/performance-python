@@ -21,3 +21,15 @@ Senario: Simple Echo Service (echos the response back to the client)
 | 0.5 | 1GB     | 500          | 1000                     | 74                   | 155                | 362                   | 0.54    |
 | 1   | 1GB     | 500          | 1000                     | 60                   | 229                | 367                   | 1.03    |
 | 2   | 1GB     | 500          | 1000                     | 40                   | 162                | 373                   | 0.52    |
+
+
+Observations: notice that there is a significant performance degradation when you decrease the number of core below 0.5 core
+
+ when we reduce to memory allocation 75 MB, we notice no signficant difference in the behaviour. However, when we set memory to 50 M the container gets killed due to insufficient memory. 
+ 
+ 
+ 
+ 
+
+
+
