@@ -1,13 +1,9 @@
-# performance-python
+# Performance analysis of Python Flask in Docker
 
-Python Flask App performance results in Docker
+## Impact of core allocation on the performance
 
-Impact of core allocation on the performance
-
-Number of Gunicorn workers 8
-
-Senario: Simple Echo Service (echos the response back to the client)
-
+### Senario: Simple Echo Service (echos the response back to the client)
+### (Number of Gunicorn workers 8)
 
 
 | CPU | Memory  | Concurrency  | Think Time (exponential) | Average Latency (ms) | Standard Deviation | TPS (requests/second) | Error % |
@@ -22,14 +18,29 @@ Senario: Simple Echo Service (echos the response back to the client)
 | 1   | 1GB     | 500          | 1000                     | 60                   | 229                | 367                   | 1.03    |
 | 2   | 1GB     | 500          | 1000                     | 40                   | 162                | 373                   | 0.52    |
 
+### Observations
 
-Observations: notice that there is a significant performance degradation when you decrease the number of core below 0.5 core
+* There is a significant performance degradation when you decrease the number of cores below 0.5 
 
- when we reduce to memory allocation 75 MB, we notice no signficant difference in the behaviour. However, when we set memory to 50 M the container gets killed due to insufficient memory. 
+* When we set the memory allocation to 75 MB, we notice no signficant difference in the behaviour. However, when we set memory to 50 M the container got killed due to insufficient memory. 
  
+ ### Memory profile
  
- 
- 
+ ```
+ # install the required packages
+pip3 install memory_profiler
+pip3 install matplotlib
+# run the profiler to record the memory usage
+# sample 0.1s by defaut
+mprof run --include-children python apps.py
+# plot the recorded memory usage
+mprof plot --output memory-profile.png
+
+ ```
+
+
+![Echo service memory](/memory-profile.png)
+
 
 
 
